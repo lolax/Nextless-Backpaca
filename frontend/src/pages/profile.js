@@ -29,44 +29,42 @@ export default class Profile extends Component {
       <Fragment>
         <div className='profile_pageContainer'>
           <div className='profile_mainContainer'>
-                  <div className='profile_userCardContainer'>
+            <div className='profile_userCardContainer'>
 
-                  {/* #region UserCard component */}
-                    <Query query={QUERY_ME_PROFILE} >
-                    {({ loading: loadingUser, error, data: { me } }) => {
-                      if (loadingUser) {
+            {/* #region UserCard component */}
+              <Query query={QUERY_ME_PROFILE} >
+              {({ loading: loadingUser, error, data: { me } }) => {
+                if (loadingUser) {
+                  return <div>Loading</div>
+                }
+                if (error) {
+                  return <div>Whoops!</div>
+                }
+                return (
+                  <>
+                  {/* #region Header component */}
+                    <Query query={QUERY_USERS_PROFILE}>
+                    {({ loading: loadingUsers, data: {users} }) => {
+                      if (loadingUser || loadingUsers) {
                         return <div>Loading</div>
                       }
-                      if (error) {
-                        return <div>Whoops!</div>
-                      }
                       return (
-                        <>
-                        {/* #region Header component */}
-                          <Query query={QUERY_USERS_PROFILE}>
-                          {({ loading: loadingUsers, data: {users} }) => {
-                            if (loadingUser || loadingUsers) {
-                              return <div>Loading</div>
-                            }
-                            return (
-                              <Header userId={me.id} users={users} logout={this.props.logout} />
-                            );
-                          }}
-                          </Query>
-                        {/* #endregion Header component end */}
-                        <UserCard user={me}/>
-                        {/* #region FriendsList component */}
-                              <FriendsList userId={me.id} friends={me.friends} />
-                        {/* #endregion FriendsList component */}
-                        </>
+                        <Header userId={me.id} users={users} logout={this.props.logout} />
                       );
                     }}
                     </Query>
-                  {/* #endregion UserCard component */}
+                  {/* #endregion Header component end */}
+                  <UserCard user={me}/>
+                  {/* #region FriendsList component */}
+                    <FriendsList userId={me.id} friends={me.friends} />
+                  {/* #endregion FriendsList component */}
+                  </>
+                );
+              }}
+              </Query>
+            {/* #endregion UserCard component */}
 
-                  </div>
-
-
+            </div>
           </div>
         </div>
       </Fragment>
