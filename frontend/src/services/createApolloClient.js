@@ -49,7 +49,11 @@ const httpLink = new HttpLink({
   uri: 'http://localhost:4000',
   credentials: 'include'
 });
-
+const stateLink = withClientState({
+  defaults,
+  resolvers,
+  cache,
+});
 //initializes Apollo Client. The constants created above are all passed in as configuration options, along with error handling and the project's local resolvers for querying the cache.
 const client = new ApolloClient({
   connectToDevtools: true,
@@ -62,12 +66,8 @@ const client = new ApolloClient({
         console.log(networkError);
       }
     }),
+    stateLink, 
     authLink.concat(httpLink),
-    withClientState({
-      defaults,
-      resolvers,
-      cache,
-    }),
   ]),
   cache
 });

@@ -27,7 +27,6 @@ const handleAuthentication = (nextState, replace) => {
     auth.handleAuthentication()
   }
 }
-
 //== React Specific ============================================================
 
 //-- Initialization and Definition -----------------

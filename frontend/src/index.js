@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import client from './services/createApolloClient';
 
+console.log(client); 
 ReactDOM.render(
   <ApolloProvider client={client}>
     <Router>

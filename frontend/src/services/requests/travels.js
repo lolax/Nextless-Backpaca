@@ -3,9 +3,9 @@ import gql from 'graphql-tag'
 // client queries
 export const QUERY_CLIENT_TRAVELS = gql`
   {
-    viewingFriend @client,
-    friendId @client,
-    viewBorders @client
+      viewingFriend @client
+      friendId @client
+      viewBorders @client 
   }
 `
 export const QUERY_MODAL_TRAVELS = gql`
