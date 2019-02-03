@@ -120,7 +120,7 @@ class App extends Component {
     return (
       <>
         <Route exact path='/' render={(props) => <Landing {...props}  login={auth.login} />} />
-        <Route path='/friends' render={(props) => <Friends {...props} logout={auth.logout}/>} />
+        <Route path='/friends/:id' render={(props) => <Friends {...props} logout={auth.logout}/>} />
         <Route path='/profile' render={(props) => <Profile {...props} logout={auth.logout}/>} />
         <Route path='/travels' render={(props) => <Travels {...props} logout={auth.logout}/>} />
         <Route path='/callback' render={(props) => {
