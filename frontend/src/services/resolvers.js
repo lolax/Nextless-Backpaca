@@ -58,13 +58,14 @@ export const resolvers = {
     toggleBorders: (_obj, args, {cache}) => {
       const query = QUERY_VIEWBORDERS_HEADER;
       const currentState = cache.readQuery({ query });
+      console.log('currentCheck', currentState)
       const data = {
         viewBorders: !currentState.viewBorders
       }
       cache.writeData({data});
       const query2 = QUERY_VIEWBORDERS_HEADER;
       const newState = cache.readQuery({ query });
-      console.log('checkbox', newState);
+      console.log('newCheck', newState);
     },
     scratchingComplete: (_obj, args, {cache}) => {
       const data = {
