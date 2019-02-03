@@ -1,9 +1,8 @@
-//== validateAndParseIdToken ======================================================
-/*
-    Helper function that decodes and verifies the jwt.
+/*== validateAndParseIdToken ============================================
+  Helper function the decodes and parses the jwt. 
 */
 
-//-- Dependencies --------------------------------
+// NODE MODULES ==============================================
 const jwksClient = require('jwks-rsa')
 const jwt = require('jsonwebtoken')
 

@@ -1,11 +1,8 @@
-
-
-//== jwt middleware ======================================================
-/*
-    This file handles the check against the Auth0 JSON WebKey Set.
+/*== JWT MIDDLEWARE ============================================
+  Checks the jwt against whe jwks enpoint keys.
 */
 
-//-- Dependencies --------------------------------
+// NODE MODULES ==============================================
 const jwt = require('express-jwt')
 const jwksRsa = require('jwks-rsa')
 
