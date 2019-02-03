@@ -1,15 +1,15 @@
 import React, { Component, Fragment } from 'react'
 import { Query, Mutation } from 'react-apollo';
 import { Card, Icon, Button } from 'semantic-ui-react';
-import AddFriendButton from './addFriend.js';
-import DeleteFriendButton from './deleteFriend.js';
+import AddFriendButton from './AddFriendButton.js';
+import DeleteFriendButton from './DeleteFriendButton.js';
 import { Link } from 'react-router-dom';
 import { 
   QUERY_USER_PROFILE,
   QUERY_FRIEND_PROFILE,
   MUTATION_VIEWFRIEND_PROFILE } from '../../services/requests/profile';
 
-export default class Friends extends Component {
+export default class FriendCard extends Component {
   constructor(props) {
     super(props)
   }
@@ -37,7 +37,7 @@ export default class Friends extends Component {
           </a>
           <Mutation mutation={MUTATION_VIEWFRIEND_PROFILE} variables={{id: id}}>
             {viewFriend => (
-              <Link to={`/travels`} onClick={viewFriend}>
+              <Link to='/travels' onClick={viewFriend}>
                 <Button>{`View ${name}'s Travels`}</Button>
               </Link>
             )}
