@@ -1,9 +1,11 @@
-// ==================================================
-// next-with-apollo -> withApollo: A HOC that allows
-// the Apollo Client to work with Next.js (SSR)
-// ==================================================
-// import withApollo from 'next-with-apollo'
-// import { withApollo } from 'react-apollo';
+
+
+//== Apollo Client Setup ====================================================================
+/*
+  Apollo Client provides the local cache as a single source of truth for the project and is responsible for communicating with the backend. This file configures the way in which it provides those two services.
+*/
+
+//-- Dependencies --------------------------------
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { ApolloLink, Observable } from 'apollo-link';
@@ -14,6 +16,8 @@ import { setContext } from 'apollo-link-context';
 import { resolvers } from './resolvers'
 // import { devURL, prodURL } from './config.js'
 
+//-- Project Constants ---------------------------
+//default values to be initialized to the local cache.
 const defaults = {
   userId: 'cjqt5c95y00s40894zs7m6q4v',
   friendId: null,
@@ -24,7 +28,7 @@ const defaults = {
   viewBorders: false,
   scratchingComplete: false
 }
-
+//new local cache, passing in dataIdFromObject, which takes a data object and returns a unique identifier to be used when normalizing the data in ths store.
 const cache = new InMemoryCache({
   dataIdFromObject: o => o.id
 })
@@ -38,6 +42,7 @@ const cache = new InMemoryCache({
 //   })
 // }
 
+//sets authorization header to the token stored in local storage after login with Auth0
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('access_token');
   return {
@@ -46,7 +51,9 @@ const authLink = setContext((_, { headers }) => {
       authorization: token ? `Bearer ${token}` : ``
     }
   }
-})
+});
+
+//sets the configuration options for interacting with our backend yoga server
 const httpLink = new HttpLink({
   uri: 'http://localhost:4000',
   credentials: 'include'
@@ -74,6 +81,7 @@ const httpLink = new HttpLink({
 //   })
 // });
 
+//initializes Apollo Client. The constants created above are all passed in as configuration options, along with error handling and the project's local resolvers for querying the cache. 
 const client = new ApolloClient({
   connectToDevtools: true,
   link: ApolloLink.from([
