@@ -12,7 +12,7 @@ import { ApolloProvider } from 'react-apollo'
 import createApolloClient from '../services/createApolloClient.js'
 import Meta from '../components/Meta.js'
 import CurrentUser from '../services/Authentication/CurrentUser.js'
-import '../less/index.less'
+import '../sass/index.scss'
 
 //-- React Implementation ------------------------
 class MyApp extends App {

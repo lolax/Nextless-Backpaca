@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 // Need to figure out how to route in a semantic ui dropdown, hesitant to wrap whole dropdown in a <Link>
 import { Mutation } from 'react-apollo';
 import { MUTATION_FRIEND_PROFILE } from '../../services/requests/profile.js';
-import '../Profile/profile.less'
+import '../Profile/profile.scss'
 
 //-- React Implementation ------------------------
 

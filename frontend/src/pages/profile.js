@@ -18,7 +18,7 @@ import {
 import UserCard from '../components/Profile/UserCard'
 import Header from '../components/ProfileHeader/ProfileHeader.js'
 import FriendsList from '../components/Profile/FriendsList.js'
-import '../components/Profile/profile.less'
+import '../components/Profile/profile.scss'
 
 //-- React Implementation ------------------------
 

@@ -9,7 +9,7 @@
 import React, { Component } from 'react';
 import NavigationDropdown from '../Navigation/NavigationDropdown';
 import UserDropdown from './UserDropdown';
-import './ProfileHeader.less';
+import './ProfileHeader.scss';
 
 //-- React Implementation ------------------------
 export default class MapHeader extends Component {

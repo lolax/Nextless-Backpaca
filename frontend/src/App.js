@@ -12,7 +12,7 @@ import { resolvers } from './services/resolvers';
 // import Auth from './services/auth/auth';
 // import { devURL, prodURL } from './config.js'
 import { Route } from 'react-router-dom';
-import './less/index.less';
+import './sass/index.scss';
 import Landing from './pages/landing';
 import Friends from './pages/friends';
 import Profile from './pages/profile';

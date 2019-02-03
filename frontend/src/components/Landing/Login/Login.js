@@ -8,7 +8,7 @@
 //-- Dependencies --------------------------------
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
-import '../landing.less';
+import '../landing.scss';
 // import Auth from '../../services/Authentication/auth/auth';
 
 //-- Project Constants ---------------------------

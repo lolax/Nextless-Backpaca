@@ -15,7 +15,7 @@ import Note from './Note';
 import Header from './Header';
 //import Scratcher from './Scratcher';
 import { QUERY_CLIENT_MODAL } from '../../services/requests/modal';
-import './countryModal.less'
+import './countryModal.scss'
 import ScratchHandler from './ScratchHandler.js';
 import ClearVisitButton from './ClearVisitButton';
 

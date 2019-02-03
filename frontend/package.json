@@ -15,7 +15,7 @@
     "axios": "^0.18.0",
     "graphql": "^14.1.1",
     "leaflet": "^1.4.0",
-    "less": "^3.9.0",
+    "node-sass": "^4.11.0",
     "react": "^16.7.0",
     "react-apollo": "^2.4.1",
     "react-dom": "^16.7.0",
@@ -27,7 +27,7 @@
     "which-polygon": "^2.2.0"
   },
   "scripts": {
-    "dev": "react-scripts start -p 1738",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -40,5 +40,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {}
 }
