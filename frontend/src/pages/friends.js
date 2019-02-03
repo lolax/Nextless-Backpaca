@@ -1,5 +1,5 @@
 import React from 'react';
-import FriendsCard from '../components/Friends/friendsCard.js'
+import FriendCard from '../components/Friends/FriendCard.js'
 import Header from '../components/ProfileHeader/ProfileHeader.js'
 import {
   QUERY_CLIENT_PROFILE,
@@ -28,7 +28,7 @@ const Friends = (props) => (
             return (
               <div>
                 <Header userId={userId} users={users} logout={props.logout}/>
-                <FriendsCard currentUserId={userId} friendsData={friends.friends} />
+                <FriendCard currentUserId={userId} friendsData={friends.friends} />
               </div>
             );
           }}
