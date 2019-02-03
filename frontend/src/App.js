@@ -19,9 +19,7 @@ import Callback from './components/Callback/Callback';
 
 //-- Project Constants ---------------------------
 //creates a rew instance of Auth to check the result of authentication
-const auth = new Auth((result) => {
-  console.log('auth result', result), client)
-}
+const auth = new Auth((result) => console.log('auth result', result), client)
 
 //handleAuthentication is retrieved from the auth helper file and processes authentication logic.
 const handleAuthentication = (nextState, replace) => {
