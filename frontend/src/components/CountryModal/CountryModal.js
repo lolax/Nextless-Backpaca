@@ -31,7 +31,7 @@ export default class CountryModal extends Component {
           disabled = true;
         }
         if (!data.viewingFriend) {
-          displayId = data.userId
+          displayId = this.props.userId
           disabled = false
         }
         return (
@@ -52,7 +52,7 @@ export default class CountryModal extends Component {
                 id={data.countryId}
                 displayId={displayId}
               />
-              <ClearVisitButton 
+              <ClearVisitButton
                 countryId={data.countryId}
                 userId={data.userId}
                 friendId={data.friendId}

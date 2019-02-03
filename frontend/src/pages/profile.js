@@ -33,15 +33,32 @@ export default class Profile extends Component {
 
                   {/* #region UserCard component */}
                     <Query query={QUERY_ME_PROFILE} >
-                    {({ loading: loadingUser, error, data }) => {
+                    {({ loading: loadingUser, error, data: { me } }) => {
                       if (loadingUser) {
                         return <div>Loading</div>
                       }
                       if (error) {
-                        return <div>I fucked up</div>
+                        return <div>Whoops!</div>
                       }
                       return (
-                        <div>i made a query</div>
+                        <>
+                        {/* #region Header component */}
+                          <Query query={QUERY_USERS_PROFILE}>
+                          {({ loading: loadingUsers, data: {users} }) => {
+                            if (loadingUser || loadingUsers) {
+                              return <div>Loading</div>
+                            }
+                            return (
+                              <Header userId={me.id} users={users} logout={this.props.logout} />
+                            );
+                          }}
+                          </Query>
+                        {/* #endregion Header component end */}
+                        <UserCard user={me}/>
+                        {/* #region FriendsList component */}
+                              <FriendsList userId={me.id} friends={me.friends} />
+                        {/* #endregion FriendsList component */}
+                        </>
                       );
                     }}
                     </Query>
@@ -57,34 +74,3 @@ export default class Profile extends Component {
 
   }
 }
-
-// <UserCard user={me}/>
-//
-// <div className='profile_friendsContainer'>
-//
-// {/* #region Header component */}
-//   <Query query={QUERY_USERS_PROFILE}>
-//   {({ loading: loadingUsers, data: {users} }) => {
-//     if (loadingUserId || loadingUsers) {
-//       return <div>Loading</div>
-//     }
-//     return (
-//       <Header userId={userId} users={users} logout={props.logout} />
-//     );
-//   }}
-//   </Query>
-// {/* #endregion Header component end */}
-//
-// {/* #region FriendsList component */}
-//   <Query query={QUERY_FRIENDS_PROFILE} variables={{id: userId}}>
-//   {({ loading: loadingFriends, data: {friends} }) => {
-//     if (loadingUserId || loadingFriends) {
-//       return <div>Loading</div>
-//     }
-//     return (
-//       <FriendsList userId={userId} friends={friends} />
-//     );
-//   }}
-//   </Query>
-// {/* #endregion FriendsList component */}
-// </div>

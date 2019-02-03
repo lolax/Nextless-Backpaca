@@ -55,7 +55,11 @@ export const QUERY_ME_PROFILE = gql`
       bio
       pictureUrl
       visits {
-        id 
+        id
+      }
+      friends {
+        id
+        name 
       }
     }
   }
