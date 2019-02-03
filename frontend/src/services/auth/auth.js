@@ -116,12 +116,7 @@ class Auth {
 // check to see if the current time is past the expiration time of the user's token.
   isAuthenticated() {
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'))
-    const valid = new Date().getTime() < expiresAt;
-    if (!valid) {
-      //remove tokens if expired
-      this.logout();
-    }
-    return valid
+    return new Date().getTime() < expiresAt;
   }
 }
 
