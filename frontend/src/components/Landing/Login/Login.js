@@ -7,32 +7,21 @@
 
 //-- Dependencies --------------------------------
 import React, { Component } from 'react';
-import { Button, Icon, Input } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import '../landing.less';
+// import Auth from '../../services/Authentication/auth/auth';
 
 //-- Project Constants ---------------------------
-// Consider importing this from another file that manages environment logic.
-// Dev URL is broken, as port isn't always 4000
-const login =
-  (process.env.NODE_ENV === 'production')
-    ? 'https://backpaca-yoga.herokuapp.com/auth'
-    : 'http://localhost:4000/auth';
 
 //-- React Implementation ------------------------
 export default class Login extends Component {
   render() {
+    console.log(this.props);
     return (
       <div className='login_loginButton'>
-        <a href={`${login}/twitter`}>
-          <Button color="twitter" className='login_twitterButton'>
-            <Icon name="twitter" /> Login with Twitter
+          <Button color="twitter" className='login' onClick={() => this.props.login()}>
+           Login or SignUp
           </Button>
-        </a>
-        <a>
-          <Button className='login_registerButton'>
-            Register
-          </Button>
-        </a>
       </div>
     );
   }

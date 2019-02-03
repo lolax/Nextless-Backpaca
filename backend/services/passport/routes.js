@@ -24,7 +24,7 @@ module.exports = ({ express }) => {
     (_, res) => {
       if (process.env.NODE_ENV === 'production') {
         res.redirect('https://backpaca.now.sh/profile')
-      } else res.redirect('http://localhost:1738/profile')
+      } else res.redirect('http://localhost:3000/profile')
     }
   )
 
@@ -32,7 +32,7 @@ module.exports = ({ express }) => {
     req.logout()
     if (process.env.NODE_ENV === 'production') {
       res.redirect('https://backpaca.now.sh')
-    } else res.redirect('http://localhost:1738')
+    } else res.redirect('http://localhost:3000')
   })
 
   express.get('/api/current_user', (req, res) => res.send(req.user))

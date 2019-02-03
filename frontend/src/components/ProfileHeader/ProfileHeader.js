@@ -24,7 +24,7 @@ export default class MapHeader extends Component {
         {/* Logo in place of backpaca */}
         <div className='logo'>Backpaca</div>
         <UserDropdown userId={this.props.userId} users={this.props.users}/>
-        <NavigationDropdown />
+        <NavigationDropdown logout={this.props.logout}/>
       </div>
     );
   }

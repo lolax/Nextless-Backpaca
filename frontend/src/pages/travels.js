@@ -38,7 +38,7 @@ export default class Travels extends Component {
   render() {
     return (
       <div className='travels_map-container'>
-        <MapHeader />
+        <MapHeader logout={this.props.logout}/>
         <Query query={QUERY_CLIENT_TRAVELS}>
         {({ loading: loadinguser, data }) => {
           const localState = data;

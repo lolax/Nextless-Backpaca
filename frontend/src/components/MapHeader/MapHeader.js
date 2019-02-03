@@ -23,7 +23,7 @@ export default class MapHeader extends Component {
       </div>
         <FriendDropdown />
         <CountryDropdown />
-        <NavigationDropdown />
+        <NavigationDropdown logout={this.props.logout}/>
       </div>
     );
   }
