@@ -76,23 +76,7 @@ export default class Travels extends Component {
                   borders = visitsUser;
                 }
                 return (
-                  <>
                   <StaticMap colors={colors} borders={borders} viewBorders={viewBorders} />
-                  <Query query={QUERY_MODAL_TRAVELS}>
-                  {({ loading, data }) => {
-                    if (!data.modalOpen) {
-                      return (
-                        null
-                      )
-                    }
-                    if (data.modalOpen) {
-                      return (
-                        <CountryModal userId={me.id}/>
-                      );
-                    }
-                  }}
-                  </Query>
-                  </>
                 );
               }}
               </Query>
@@ -100,7 +84,20 @@ export default class Travels extends Component {
           )
         }}
         </Query>
-
+        <Query query={QUERY_MODAL_TRAVELS}>
+        {({ loading, data }) => {
+          if (!data.modalOpen) {
+            return (
+              null
+            )
+          }
+          if (data.modalOpen) {
+            return (
+              <CountryModal />
+            );
+          }
+        }}
+        </Query>
         <div className='travels_checkboxMobile'>
         <ViewBordersCheckbox />
         </div>

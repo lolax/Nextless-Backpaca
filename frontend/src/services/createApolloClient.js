@@ -33,7 +33,7 @@ const cache = new InMemoryCache({
 //   const token = await localStorage.getItem('access_token');
 //   operation.setContext({
 //     headers: {
-//       Authorization: token ? token : null
+//       authorization: token ? `Bearer ${token}` : ``
 //     }
 //   })
 // }
@@ -51,13 +51,6 @@ const httpLink = new HttpLink({
   uri: 'http://localhost:4000',
   credentials: 'include'
 });
-// const authLink = setContext((_, { headers }) => {
-//   const token = localStorage.getItem('access_token');
-//   return {
-//     ...headers,
-//     Authorization: token ? `Bearer ${token}` : ``
-//   }
-// })
 
 // const requestLink = new ApolloLink((operation, forward) => {
 //   new Observable(observer => {

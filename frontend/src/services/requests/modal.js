@@ -3,6 +3,7 @@ import gql from 'graphql-tag'
 // client queries
 export const QUERY_CLIENT_MODAL = gql`
   {
+    userId @client,
     viewingFriend @client,
     friendId @client,
     viewBorders @client,
