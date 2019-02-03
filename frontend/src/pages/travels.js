@@ -16,7 +16,7 @@ import Legend from '../components/MapLegend/Legend';
 import CountryModal from '../components/CountryModal/CountryModal';
 import ViewBordersCheckbox from '../components/MapHeader/ViewBordersCheckbox';
 import { fixData } from '../components/Map/mapHelpers';
-import '../components/Map/map.less';
+import '../components/Map/map.scss';
 import {
   QUERY_ME_TRAVELS,
   QUERY_CLIENT_TRAVELS,
@@ -86,6 +86,7 @@ export default class Travels extends Component {
         </Query>
         <Query query={QUERY_MODAL_TRAVELS}>
         {({ loading, data }) => {
+          if (loading) return <div>Loading</div>
           if (!data.modalOpen) {
             return (
               null

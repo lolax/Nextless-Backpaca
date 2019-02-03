@@ -9,7 +9,7 @@
 import React, { Component } from 'react';
 import Login from './Login/Login.js';
 import Backpaca from './Backpaca';
-import './landing.less';
+import './landing.scss';
 
 //-- React Implementation ------------------------
 export default class LandingPage extends Component {

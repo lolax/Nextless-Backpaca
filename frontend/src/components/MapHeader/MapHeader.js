@@ -11,7 +11,7 @@ import NavigationDropdown from '../Navigation/NavigationDropdown.js';
 import FriendDropdown from './FriendDropdown';
 import CountryDropdown from './CountryDropdown';
 import ViewBordersCheckbox from './ViewBordersCheckbox';
-import './mapHeader.less';
+import './mapHeader.scss';
 
 //-- React Implementation ------------------------
 export default class MapHeader extends Component {

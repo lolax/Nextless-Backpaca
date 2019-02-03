@@ -14,7 +14,7 @@ import {
   MUTATION_DELETEFRIEND_PROFILE,
   MUTATION_FRIEND_PROFILE } from '../../services/requests/profile';
   import { Link } from 'react-router-dom';
-  import './profile.less'
+  import './profile.scss'
 
 //-- React Implementation ------------------------
 

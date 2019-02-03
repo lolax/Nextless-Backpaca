@@ -25,7 +25,7 @@ of urls.
 //-- Dependencies --------------------------------
 import React from 'react';
 import * as utilities from './utilities.js';
-import './scratcher.less';
+import './scratcher.scss';
 
 
 //== React Life Cycle Methods ==================================================

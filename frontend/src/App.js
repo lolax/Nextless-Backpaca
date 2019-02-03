@@ -10,7 +10,7 @@ import React, { Component } from 'react';
 import client from './services/createApolloClient.js';
 import Auth from './services/auth/auth';
 import { Route } from 'react-router-dom';
-import './less/index.less';
+import './sass/index.scss';
 import Landing from './pages/landing';
 import Friends from './pages/friends';
 import Profile from './pages/profile';

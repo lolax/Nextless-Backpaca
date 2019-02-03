@@ -8,7 +8,7 @@
 //-- Dependencies --------------------------------
 import React from 'react'
 import { Card } from 'semantic-ui-react'
-import './legend.less'
+import './legend.scss'
 
 //-- React Implementation ------------------------
 const Legend = () => (

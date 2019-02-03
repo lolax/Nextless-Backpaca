@@ -12,7 +12,7 @@ import { Mutation } from 'react-apollo';
 import { 
   MUTATION_UPDATEUSER_PROFILE,
   MUTATION_DELETEUSER_PROFILE } from '../../services/requests/profile'
-import './profile.less'
+import './profile.scss'
 
 //== React Implementation ======================================================
 
