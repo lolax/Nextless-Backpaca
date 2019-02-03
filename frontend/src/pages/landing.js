@@ -1,8 +1,8 @@
 import React from 'react';
 import LandingPage from '../components/Landing/landingPage';
 
-const Landing = () => ( 
-    <LandingPage />
+const Landing = (props) => (
+    <LandingPage {...props}/>
 )
 
 export default Landing

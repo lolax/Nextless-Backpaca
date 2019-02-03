@@ -9,8 +9,8 @@
 import React, { Component } from 'react';
 import { Query, Mutation } from 'react-apollo';
 import { Dropdown } from 'semantic-ui-react';
-import { 
-  QUERY_COUNTRIES_HEADER, 
+import {
+  QUERY_COUNTRIES_HEADER,
   MUTATION_OPENMODAL_HEADER } from '../../services/requests/header';
 
 //-- React Implementation ------------------------
@@ -20,6 +20,9 @@ export default class CountriesDropdown extends Component {
     return (
       <Query query={QUERY_COUNTRIES_HEADER}>
       {({ loading, data: { countries }}) => {
+        if (loading) {
+          return (<div>working on it</div>)
+        }
         //retrieves the countries array from the query and maps through it to create the dropdown list data.
         const countriesList = countries.map(country => {
           return {

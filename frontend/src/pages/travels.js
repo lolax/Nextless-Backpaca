@@ -18,6 +18,7 @@ import ViewBordersCheckbox from '../components/MapHeader/ViewBordersCheckbox';
 import { fixData } from '../components/Map/mapHelpers';
 import '../components/Map/map.less';
 import {
+  QUERY_ME_TRAVELS,
   QUERY_CLIENT_TRAVELS,
   QUERY_USERVISITS_TRAVELS,
   QUERY_FRIENDSVISITS_TRAVELS,
@@ -38,50 +39,44 @@ export default class Travels extends Component {
   render() {
     return (
       <div className='travels_map-container'>
-        <MapHeader />
+        <MapHeader logout={this.props.logout}/>
         <Query query={QUERY_CLIENT_TRAVELS}>
-        {({ loading: loadinguser, data }) => {
+        {({ loading: loadinglocal, data }) => {
           const localState = data;
-          if (!localState.userId) {
+          if (!localState) {
             return null;
           }
-          const id = localState.userId;
           return (
             <Fragment>
-              <Query query={QUERY_USERVISITS_TRAVELS} variables={{id}}>
-              {({ loading: loadingVisits, data} ) => {
+              <Query query={QUERY_ME_TRAVELS} >
+              {({ loading: loadingVisits, data: { me }} ) => {
+                if (loadinglocal || loadingVisits) {
+                  return <div>loading...</div>
+                }
+                console.log(me);
                 let visitsUser = [];
-                if (data.user) {
-                  visitsUser.push(data.user);
+                if (me.visits.length > 0) {
+                  visitsUser.push(me.visits);
                 }
                 visitsUser = (fixData(visitsUser))
+                let colors, borders;
+                let friendVisits = [];
+                let viewBorders = localState.viewBorders ? true: false;
+                if (!localState.viewingFriend) {
+                  colors = visitsUser;
+                  if (me.friends.length > 0) {
+                    friendVisits = fixData(me.friends)
+                  }
+                  borders = friendVisits;
+                }
+                if (localState.viewingFriend && localState.friendId) {
+                  let oneFriend = me.friends.filter(friend => friend.id === localState.friendId)
+                  oneFriend = fixData(oneFriend);
+                  colors = oneFriend;
+                  borders = visitsUser;
+                }
                 return (
-                  <Query query={QUERY_FRIENDSVISITS_TRAVELS} variables={{id}}>
-                    {({ loading: loadingFriendVisits, data: { friends }}) => {
-                      let colors, borders;
-                      let friendVisits = [];
-                      let viewBorders = localState.viewBorders ? true: false;
-                      if (!localState.viewingFriend) {
-                        colors = visitsUser;
-                        if (friends) {
-                          friendVisits = fixData(friends)
-                        }
-                        borders = friendVisits;
-                      }
-                      if (localState.viewingFriend && localState.friendId) {
-                        let oneFriend = friends.filter(friend => friend.id === localState.friendId)
-                        oneFriend = fixData(oneFriend);
-                        colors = oneFriend;
-                        borders = visitsUser;
-                      }
-                      if (loadinguser || loadingVisits || loadingFriendVisits) {
-                        return <div>loading...</div>
-                      }
-                      return (
-                        <StaticMap colors={colors} borders={borders} viewBorders={viewBorders} />
-                      );
-                    }}
-                  </Query>
+                  <StaticMap colors={colors} borders={borders} viewBorders={viewBorders} />
                 );
               }}
               </Query>

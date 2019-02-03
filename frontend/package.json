@@ -4,6 +4,14 @@
   "private": true,
   "dependencies": {
     "apollo-boost": "^0.1.27",
+    "apollo-cache-inmemory": "^1.4.2",
+    "apollo-client": "^2.4.12",
+    "apollo-link": "^1.2.8",
+    "apollo-link-context": "^1.0.14",
+    "apollo-link-error": "^1.1.7",
+    "apollo-link-http": "^1.5.11",
+    "apollo-link-state": "^0.4.2",
+    "auth0-lock": "^11.14.0",
     "axios": "^0.18.0",
     "graphql": "^14.1.1",
     "leaflet": "^1.4.0",
@@ -19,7 +27,7 @@
     "which-polygon": "^2.2.0"
   },
   "scripts": {
-    "dev": "react-scripts start",
+    "dev": "react-scripts start -p 1738",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

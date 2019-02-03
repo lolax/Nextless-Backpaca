@@ -1,8 +1,8 @@
 import React from 'react';
 import FriendsCard from '../components/Friends/friendsCard.js'
 import Header from '../components/ProfileHeader/ProfileHeader.js'
-import { 
-  QUERY_CLIENT_PROFILE, 
+import {
+  QUERY_CLIENT_PROFILE,
   QUERY_FRIENDS_PROFILE,
   QUERY_USERS_PROFILE } from '../services/requests/profile'
 import { Query } from 'react-apollo';
@@ -14,7 +14,7 @@ const Friends = (props) => (
       return <div>Loading...</div>
     }
     return (
-      <Query query={QUERY_FRIENDS_PROFILE} variables={{id: userId}}> 
+      <Query query={QUERY_FRIENDS_PROFILE} variables={{id: userId}}>
       {({ loading, data: friends }) => {
         if(loading) {
           return <div>Loading...</div>
@@ -27,7 +27,7 @@ const Friends = (props) => (
             }
             return (
               <div>
-                <Header userId={userId} users={users} />
+                <Header userId={userId} users={users} logout={props.logout}/>
                 <FriendsCard currentUserId={userId} friendsData={friends.friends} />
               </div>
             );

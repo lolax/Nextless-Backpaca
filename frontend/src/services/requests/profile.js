@@ -42,6 +42,29 @@ export const QUERY_USER_PROFILE = gql`
     }
   }
 `
+
+export const QUERY_ME_PROFILE = gql`
+  query Profile {
+    me {
+      id
+      name
+      nickname
+      email
+      scratchingAutomated
+      isPrivate
+      bio
+      pictureUrl
+      visits {
+        id
+      }
+      friends {
+        id
+        name 
+      }
+    }
+  }
+`
+
 export const QUERY_FRIENDS_PROFILE = gql`
   query User($id: ID!) {
     friends(id: $id) {

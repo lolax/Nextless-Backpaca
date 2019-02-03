@@ -1,11 +1,11 @@
 import gql from 'graphql-tag'
 
 // client queries
-export const QUERY_CLIENT_HEADER = gql`
-  {
-    userId @client
-  }
-`
+// export const QUERY_CLIENT_HEADER = gql`
+//   {
+//     userId @client
+//   }
+// `
 export const QUERY_VIEWFRIEND_HEADER = gql`
   {
     viewingFriend @client
@@ -49,6 +49,18 @@ export const QUERY_FRIENDS_HEADER = gql`
     friends(id: $id) {
       id
       name
+    }
+  }
+`
+
+export const QUERY_MY_FRIENDS_HEADER = gql`
+  query MyFriends {
+    me {
+      id
+      friends {
+        id
+        name
+      }
     }
   }
 `

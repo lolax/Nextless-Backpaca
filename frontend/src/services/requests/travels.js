@@ -3,7 +3,6 @@ import gql from 'graphql-tag'
 // client queries
 export const QUERY_CLIENT_TRAVELS = gql`
   {
-    userId @client,
     viewingFriend @client,
     friendId @client,
     viewBorders @client
@@ -71,4 +70,35 @@ query User($id: ID!) {
     }
   }
 }
+`
+
+export const QUERY_ME_TRAVELS = gql`
+  query Me {
+    me {
+      visits {
+        id
+        level
+        note
+        country {
+          id
+          name
+          code
+        }
+      }
+      friends {
+        id
+        name
+        visits {
+          id
+          level
+          note
+          country {
+            id
+            name
+            code
+          }
+        }
+      }
+    }
+  }
 `
