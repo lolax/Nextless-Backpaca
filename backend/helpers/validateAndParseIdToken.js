@@ -1,5 +1,13 @@
+//== validateAndParseIdToken ======================================================
+/*
+    Helper function that decodes and verifies the jwt.
+*/
+
+//-- Dependencies --------------------------------
 const jwksClient = require('jwks-rsa')
 const jwt = require('jsonwebtoken')
+
+//-- jwksClient config --------------------------------
 const jwks = jwksClient({
   cache: true,
   rateLimit: true,
@@ -7,12 +15,11 @@ const jwks = jwksClient({
   jwksUri: `https://backpaca.auth0.com/.well-known/jwks.json`
 })
 
+//-- validateAndParseIdToken --------------------------------
 const validateAndParseIdToken = (idToken) => new Promise((resolve, reject) => {
-  console.log(idToken)
-  const { header, payload} = jwt.decode(idToken, {complete: true})
+  const { header, payload } = jwt.decode(idToken, {complete: true})
   if (!header || !header.kid || !payload) reject(new Error('Invalid Token'))
   jwks.getSigningKey(header.kid, (err, key) => {
-    // const signingKey = key.publicKey || key.rsaPublicKey;
     if (err) reject(new Error('Error getting signing key: ' + err.message))
     jwt.verify(idToken, key.publicKey, { algorithms: ['RS256'] }, (err, decoded) => {
       if (err) reject('jwt verify error: ' + err.message)

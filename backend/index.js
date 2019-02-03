@@ -19,23 +19,8 @@ const { getUser } = require('./middleware/getUser');
 const validateAndParseIdToken = require('./helpers/validateAndParseIdToken');
 const { directives } = require('./directives');
 const { resolvers } = require('./resolvers')
-// require('./services/passport/passport')(prisma)
-//------------------------------------------------
 
-// async function createPrismaUser(context, idToken) {
-//   const user = await context.prisma.createUser({
-//     data: {
-//       identity: idToken.sub.split(`|`)[0],
-//       auth0id: idToken.sub.split(`|`)[1],
-//       name: idToken.name,
-//       email: idToken.email,
-//       pictureUrl: idToken.picture
-//     }
-//   })
-//   return user
-// };
-//
-// const contextUser = context => context.request.user;
+//-- CORS whitelist and configuration ----------------------------------------------
 
 const whitelist = ['http://localhost:1738', 'http://localhost:3000', 'https://backpaca.now.sh', 'http://localhost:4000']
 const corsOptions = {
@@ -50,6 +35,7 @@ const corsOptions = {
    }
  }};
 
+//-- Server configuration --------------------------------
 const server = new GraphQLServer({
   typeDefs: './schema.graphql',
   resolvers,
@@ -62,6 +48,7 @@ const server = new GraphQLServer({
   }
 })
 
+//-- JWT check middleware --------------------------------
 server.express.post(
   server.options.endpoint,
   checkJwt,
@@ -72,13 +59,14 @@ server.express.post(
     next()
   }
 );
+
+//-- getUser added to request middleware --------------------------------
 server.express.post(server.options.endpoint, (req, res, done ) => {
   console.log('the request is', req.headers)
   return getUser(req, res, done, prisma)
 })
-// require('./services/middleware')(server)
-// require('./services/passport/routes')(server)
 
+//-- Repackage CORS options for easy use by the server --------------------------------
 const opts = {
   cors: corsOptions
 }
