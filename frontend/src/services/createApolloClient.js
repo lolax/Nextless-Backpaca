@@ -8,7 +8,7 @@
 //-- Dependencies --------------------------------
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
-import { ApolloLink, Observable } from 'apollo-link';
+import { ApolloLink } from 'apollo-link';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { onError } from 'apollo-link-error';
 import { withClientState } from 'apollo-link-state';
@@ -33,15 +33,6 @@ const cache = new InMemoryCache({
   dataIdFromObject: o => o.id
 })
 
-// const request = async (operation) => {
-//   const token = await localStorage.getItem('access_token');
-//   operation.setContext({
-//     headers: {
-//       authorization: token ? `Bearer ${token}` : ``
-//     }
-//   })
-// }
-
 //sets authorization header to the token stored in local storage after login with Auth0
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('access_token');
@@ -59,29 +50,7 @@ const httpLink = new HttpLink({
   credentials: 'include'
 });
 
-// const requestLink = new ApolloLink((operation, forward) => {
-//   new Observable(observer => {
-//     let handle;
-//     Promise.resolve(operation)
-//     .then(oper => request(oper))
-//     .then(() => {
-//       handle = forward(operation).subscribe({
-//         next: observer.next.bind(observer),
-//         error: observer.error.bind(observer),
-//         complete: observer.complete.bind(observer),
-//       });
-//     })
-//     .catch(observer.error.bind(observer));
-//
-//     return () => {
-//       if (handle) {
-//         handle.unsubscribe();
-//       };
-//     };
-//   })
-// });
-
-//initializes Apollo Client. The constants created above are all passed in as configuration options, along with error handling and the project's local resolvers for querying the cache. 
+//initializes Apollo Client. The constants created above are all passed in as configuration options, along with error handling and the project's local resolvers for querying the cache.
 const client = new ApolloClient({
   connectToDevtools: true,
   link: ApolloLink.from([
