@@ -49,6 +49,8 @@ const httpLink = new HttpLink({
   uri: 'http://localhost:4000',
   credentials: 'include'
 });
+
+//sets the configuration options for the local store/cache/state/whatever
 const stateLink = withClientState({
   defaults,
   resolvers,
@@ -66,7 +68,7 @@ const client = new ApolloClient({
         console.log(networkError);
       }
     }),
-    stateLink, 
+    stateLink,
     authLink.concat(httpLink),
   ]),
   cache
