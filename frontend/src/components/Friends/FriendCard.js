@@ -3,7 +3,7 @@ import { Query, Mutation } from 'react-apollo';
 import { Card, Icon, Button } from 'semantic-ui-react';
 import AddFriendButton from './AddFriendButton.js';
 import DeleteFriendButton from './DeleteFriendButton.js';
-import { Link } from 'react-router-dom';
+import './friends.scss'
 import { 
   QUERY_USER_PROFILE,
   QUERY_FRIEND_PROFILE,
@@ -37,9 +37,12 @@ export default class FriendCard extends Component {
           </a>
           <Mutation mutation={MUTATION_VIEWFRIEND_PROFILE} variables={{id: id}}>
             {viewFriend => (
-              <Link to='/travels' onClick={viewFriend}>
-                <Button>{`View ${name}'s Travels`}</Button>
-              </Link>
+              <Button onClick={() => {
+                viewFriend()
+                this.props.history.push('/travels')
+              }}>
+                {`View ${name}'s Travels`}
+              </Button>
             )}
           </Mutation>
         </Fragment>
@@ -71,7 +74,8 @@ export default class FriendCard extends Component {
                 return (
                   <div>
                     <Card 
-                    image='/static/alpaca.png'
+                    id='friendCard'
+                    image={user.pictureUrl ? user.pictureUrl : 'https://jazzyacres.com/wp-content/uploads/2016/09/File-Sep-15-4-04-02-PM.jpeg'}
                     header={user.name}
                     meta={visitCount === 1 ? `${visitCount} Visit` : `${visitCount} Visits`}
                     description={user.bio === null ? null : user.bio}
