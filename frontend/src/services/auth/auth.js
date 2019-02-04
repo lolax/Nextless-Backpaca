@@ -1,7 +1,16 @@
+
+
+//== auth ======================================================
+/*
+    This file handles the Auth0Lock render logic, as well as the work of sending the information to the backend
+*/
+
+//-- Dependencies --------------------------------
 import Auth0Lock from 'auth0-lock'
 import gql from 'graphql-tag'
 import { AUTH_CONFIG } from './auth0-variables'
 
+//graphql mutation to send to the backend
 const AUTHENTICATE = gql`
     mutation authenticate($idToken: String!) {
         authenticate(idToken: $idToken) {
@@ -12,6 +21,7 @@ const AUTHENTICATE = gql`
     }
 `
 
+//sets up the Auth class with configuration options.
 class Auth {
   lock = new Auth0Lock(AUTH_CONFIG.clientId, AUTH_CONFIG.domain, {
     oidcConformant: true,
@@ -38,11 +48,12 @@ class Auth {
   }
 
   login() {
-    // Call the show method to display the widget.
+    // Call the show method to display the Lock widget.
     console.log('lock', this.isAuthenticated())
     this.lock.show()
   }
 
+//set callbacks for Auth0Lock
   handleAuthentication() {
     // Add a callback for Lock's `authenticated` event
     this.lock.on('authenticated', this.setSession.bind(this))
@@ -55,7 +66,9 @@ class Auth {
     })
   }
 
+//process result of authentication
   setSession(authResult) {
+    //if everything went well, save the token to localStorage.
     if (authResult && authResult.accessToken && authResult.idToken) {
       // Set the time that the access token will expire at
       let expiresAt = JSON.stringify(
@@ -64,6 +77,7 @@ class Auth {
       localStorage.setItem('access_token', authResult.accessToken)
       localStorage.setItem('id_token', authResult.idToken)
       localStorage.setItem('expires_at', expiresAt)
+      //send authenticate mutation with the resulte of the Auth0 flow
       const data = {
         status: `success`,
         accessToken: authResult.accessToken,
@@ -75,13 +89,14 @@ class Auth {
     }
   }
 
+//send authenticate mutation
   signinOrCreateAccount({ accessToken, idToken, expiresAt }) {
-    console.log(this.apolloClient)
     this.apolloClient
         .mutate({
           mutation: AUTHENTICATE,
           variables: { idToken }
         })
+        //check to see if we are on the callback page. if so, redirect to landing page. if not, reload current window
         .then(res => {
           if (window.location.href.includes(`callback`)) {
             window.location.href = '/'
@@ -90,20 +105,18 @@ class Auth {
           }
         }).catch(err => console.log('Sign in or create account error: ', err))
   }
+// Clear access token and ID token from local storage on logout button press.
   logout() {
-    // Clear access token and ID token from local storage
     localStorage.removeItem('access_token')
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
-
     window.location.reload()
   }
 
+// check to see if the current time is past the expiration time of the user's token.
   isAuthenticated() {
-    // Check whether the current time is past the
-    // access token's expiry time
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'))
-    return new Date().getTime() < expiresAt
+    return new Date().getTime() < expiresAt;
   }
 }
 
