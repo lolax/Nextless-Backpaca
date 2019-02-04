@@ -6,6 +6,9 @@ export const QUERY_CLIENT_PROFILE = gql`
     userId @client
   }
 `
+
+
+
 export const QUERY_FRIEND_PROFILE = gql`
   {
     friendId @client
@@ -59,7 +62,7 @@ export const QUERY_ME_PROFILE = gql`
       }
       friends {
         id
-        name 
+        name
       }
     }
   }
@@ -73,6 +76,19 @@ export const QUERY_FRIENDS_PROFILE = gql`
     }
   }
 `
+
+export const QUERY_ME_FRIENDS_PROFILE = gql`
+  query MyFriends {
+    me {
+      id
+      friends {
+        id
+        namd
+      }
+    }
+  }
+`
+
 export const QUERY_USERS_PROFILE = gql`
   {
     users {

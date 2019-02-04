@@ -5,7 +5,7 @@ export const QUERY_CLIENT_TRAVELS = gql`
   {
       viewingFriend @client
       friendId @client
-      viewBorders @client 
+      viewBorders @client
   }
 `
 export const QUERY_MODAL_TRAVELS = gql`
@@ -75,6 +75,7 @@ query User($id: ID!) {
 export const QUERY_ME_TRAVELS = gql`
   query Me {
     me {
+      id
       visits {
         id
         level

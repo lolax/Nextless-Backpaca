@@ -61,7 +61,8 @@ export default class WorldMap extends React.Component {
 
   //-- When Receiving Props ------------------------
   componentDidUpdate(prevProps) {
-    if (prevProps.viewBorders != this.props.viewBorders) {
+    if (prevProps !== this.props) {
+      console.log('was', prevProps, 'is', this.props)
       this.forceUpdate();
     }
   }
