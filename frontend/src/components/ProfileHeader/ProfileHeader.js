@@ -13,10 +13,6 @@ import './ProfileHeader.scss';
 
 //-- React Implementation ------------------------
 export default class MapHeader extends Component {
-  constructor(props) {
-    super(props)
-  }
-
 
   render() {
     return (

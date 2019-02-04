@@ -13,6 +13,7 @@
 */
 
 //-- Project Constants ---------------------------
+
 const RESOLUTION_DEFAULT = 25;
 /* RESOLUTION_DEFAULT: If draw is invoked before client rectangles have been
     determined, then resize will fail with a width and height of 0. As a
@@ -145,10 +146,12 @@ export function checkSize(drawingState) {
     const conversionContext = drawingState.conversionContext;
     // Compare current dimensions to previous dimensions
     const bounds = canvas.parentNode.getBoundingClientRect();
+
     const oldWidth  = canvas.width ;
     const oldHeight = canvas.height;
     const newWidth  = bounds.right  - bounds.left;
     const newHeight = bounds.bottom - bounds.top ;
+
     //if(newWidth === oldWidth && newHeight === oldHeight) { return;}
     // Redraw outline at larger size
     canvas.width  = 200;//newWidth ;

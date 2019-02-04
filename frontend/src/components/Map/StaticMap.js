@@ -20,7 +20,7 @@
 import React from 'react';
 import L from 'leaflet';
 import { Query, Mutation } from 'react-apollo';
-import { Map, TileLayer, GeoJSON } from 'react-leaflet';
+import { Map, GeoJSON } from 'react-leaflet';
 import { Label } from 'semantic-ui-react';
 import whichPolygon from 'which-polygon';
 // Modules I've defined
@@ -30,7 +30,6 @@ import {
   colors, defaultStyle, hoverStyle, colorStyle, borderStyle,
 } from './countryStyles';
 import {
-  QUERY_COUNTRY_TRAVELS,
   MUTATION_OPENMODAL_TRAVELS,
 } from '../../services/requests/travels';
 import {

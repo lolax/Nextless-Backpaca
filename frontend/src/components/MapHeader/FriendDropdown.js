@@ -11,8 +11,6 @@ import { Query, Mutation } from 'react-apollo';
 import { Dropdown } from 'semantic-ui-react';
 import {
   QUERY_MY_FRIENDS_HEADER,
-  QUERY_CLIENT_HEADER,
-  QUERY_FRIENDS_HEADER,
   MUTATION_VIEWFRIEND_HEADER } from '../../services/requests/header';
 
 

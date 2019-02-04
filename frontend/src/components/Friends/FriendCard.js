@@ -10,9 +10,6 @@ import {
   MUTATION_VIEWFRIEND_PROFILE } from '../../services/requests/profile';
 
 export default class FriendCard extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   //the current user that is logged in
   userId = this.props.currentUserId

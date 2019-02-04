@@ -13,9 +13,6 @@ import './landing.scss';
 
 //-- React Implementation ------------------------
 export default class LandingPage extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   getToken = () => {
     const token = localStorage.getItem('access_token');
