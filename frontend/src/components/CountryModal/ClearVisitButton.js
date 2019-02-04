@@ -1,17 +1,16 @@
 import React from 'react'
 import { Button } from 'semantic-ui-react'
-import { Link } from 'react-router-dom';
 import { Query, Mutation } from 'react-apollo';
 import { 
   MUTATION_DELETEVISIT_MODAL, 
   QUERY_USERVISITS_MODAL } from '../../services/requests/modal';
 
-const ClearVisitButton = ({ countryId, userId, friendId, disabled }) => {
+const ClearVisitButton = ({ countryId, userId, friendId, disabled, history }) => {
   return (
     disabled ? 
-    <Link to={`/friends/${friendId}`}>
-      <Button>View Friend's Profile</Button>
-    </Link>
+      <Button onClick={() => history.push(`/friends/${friendId}`)}>
+        View Friend's Profile
+      </Button>
     :
     (
       <Query query={QUERY_USERVISITS_MODAL} variables={{id: userId}}>
