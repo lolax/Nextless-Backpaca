@@ -57,6 +57,7 @@ export default class CountryModal extends Component {
                 userId={data.userId}
                 friendId={data.friendId}
                 disabled={disabled}
+                {...this.props}
               />
             </Card.Content>
           </div>
