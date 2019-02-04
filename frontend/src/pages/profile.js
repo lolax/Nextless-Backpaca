@@ -39,7 +39,7 @@ export default class Profile extends Component {
                 }
                 console.log('in profile', me)
                 return (
-                  <>
+                  <Fragment>
                   {/* #region Header component */}
                     <Query query={QUERY_USERS_PROFILE}>
                     {({ loading: loadingUsers, data: {users} }) => {
@@ -56,7 +56,7 @@ export default class Profile extends Component {
                   {/* #region FriendsList component */}
                   <FriendsList userId={me.id} friends={me.friends} />
                   {/* #endregion FriendsList component */}
-                  </>
+                  </Fragment>
                 );
               }}
               </Query>

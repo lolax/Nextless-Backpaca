@@ -37,7 +37,7 @@ const FriendsList = ({ friends, userId }) => (
                 onClick={setFriendId}
               >
                 <List.Content>
-                  <Image avatar src={friend.pictureUrl ? friend.pictureUrl : '../../static/alpaca.png'}/>
+                  <Image avatar src={friend.pictureUrl ? friend.pictureUrl : require('../../static/alpaca.png')}/>
                   {friend.name}
                 </List.Content>
               </Link>

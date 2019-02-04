@@ -33,7 +33,7 @@ const UsersDropdown = (props) => {
         <Header>
           <Image 
             circular
-            src={user.pictureUrl ? user.pictureUrl : 'https://jazzyacres.com/wp-content/uploads/2016/09/File-Sep-15-4-04-02-PM.jpeg'}
+            src={user.pictureUrl ? user.pictureUrl : require('../../static/alpaca.png')}
           />
           {user.name}
         </Header>

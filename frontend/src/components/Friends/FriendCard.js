@@ -73,13 +73,13 @@ export default class FriendCard extends Component {
                 const visitCount = user.visits.length
                 return (
                   <div>
-                    <Card
-                    id='friendCard'
-                    image={user.pictureUrl ? user.pictureUrl : 'https://jazzyacres.com/wp-content/uploads/2016/09/File-Sep-15-4-04-02-PM.jpeg'}
-                    header={user.name}
-                    meta={visitCount === 1 ? `${visitCount} Visit` : `${visitCount} Visits`}
-                    description={user.bio === null ? null : user.bio}
-                    extra={this.friends(friendId, user.name)}
+                    <Card 
+                      id='friendCard'
+                      image={user.pictureUrl ? user.pictureUrl : require('../../static/alpaca.png')}
+                      header={user.name}
+                      meta={visitCount === 1 ? `${visitCount} Visit` : `${visitCount} Visits`}
+                      description={user.bio === null ? null : user.bio}
+                      extra={this.friends(friendId, user.name)}
                     />
                   </div>
                 )
