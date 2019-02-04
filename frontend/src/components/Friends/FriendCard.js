@@ -4,7 +4,7 @@ import { Card, Icon, Button } from 'semantic-ui-react';
 import AddFriendButton from './AddFriendButton.js';
 import DeleteFriendButton from './DeleteFriendButton.js';
 import './friends.scss'
-import { 
+import {
   QUERY_USER_PROFILE,
   QUERY_FRIEND_PROFILE,
   MUTATION_VIEWFRIEND_PROFILE } from '../../services/requests/profile';
@@ -19,14 +19,16 @@ export default class FriendCard extends Component {
   //list of friends of the logged in user
   friendList = this.props.friendsData
 
-  
-  friends = (id, name) => {   
+
+  friends = (id, name) => {
     let isFriends = false
-    this.friendList.forEach(friend => {
-      if (friend.id === id) {
-        isFriends = true
-      }
-    })
+    if (this.friendList) {
+      this.friendList.forEach(friend => {
+        if (friend.id === id) {
+          isFriends = true
+        }
+      })
+    }
 
     if(isFriends) {
       return (
@@ -63,13 +65,14 @@ export default class FriendCard extends Component {
     return (
       <Query query={QUERY_FRIEND_PROFILE}>
         {({ loading: loadingFriendId, data: {friendId} }) => {
+          console.log('friendId in friendCard', friendId); 
           return (
             <Query query={QUERY_USER_PROFILE} variables={ {id: friendId} }>
               {({ loading: loadingUser, data: {user} }) => {
-                console.log(user)
                   if (loadingFriendId || loadingUser) {
                   return <div>loading...</div>
                 }
+                console.log(user)
                 const visitCount = user.visits.length
                 return (
                   <div>

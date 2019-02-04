@@ -55,17 +55,16 @@ export default class UserCard extends Component {
   //uploads the image and sends back the url of the uploaded image
   uploadWidget = (e) => {
     e.preventDefault()
-    // cloudinary was undefined - is it a package that needs to be imported?
-    // cloudinary.openUploadWidget({
-    //   cloud_name: 'dr9p6aaos',
-    //   upload_preset: 'vchytrzk'}, 
-    //   (error, result) => { 
-    //     console.log(error, result)
-    //     if(result) {
-    //     this.setState({ pictureUrl: result[0].secure_url })
-    //     }
-    //   } 
-    // )
+    window.cloudinary.openUploadWidget({
+      cloud_name: 'dr9p6aaos',
+      upload_preset: 'vchytrzk'}, 
+      (error, result) => { 
+        console.log(error, result)
+        if(result) {
+        this.setState({ pictureUrl: result[0].secure_url })
+        }
+      } 
+    )
   }
 
   //toggles whether the form is editable

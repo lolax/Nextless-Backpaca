@@ -13,13 +13,19 @@ import {  QUERY_VIEWBORDERS_HEADER } from './requests/header'
 //   }
 // `
 
+const QUERY_ME_ID = gql`
+query MyId {
+  me {
+    id
+  }
+}
+`
+
 export const resolvers = {
   Mutation: {
-    viewFriend: (_obj, { id }, {cache}) => {
-      const query = QUERY_CLIENT_PROFILE;
-      const currentState = cache.readQuery({ query });
+    viewFriend: (_obj, args, {cache}) => {
       let data = {};
-      if (currentState.userId === id) {
+      if (args.me == args.id) {
         data = {
           viewingFriend: false,
           friendId: null,
@@ -27,7 +33,7 @@ export const resolvers = {
       } else {
         data = {
           viewingFriend: true,
-          friendId: id
+          friendId: args.id
         };
       }
       cache.writeData({ data });
@@ -39,9 +45,9 @@ export const resolvers = {
         countryId: id
       }
       cache.writeData({ data });
-      const query = QUERY_CLIENT_MODAL;
-      const currentState = cache.readQuery({ query });
-      console.log('openModal', currentState)
+      // const query = QUERY_CLIENT_MODAL;
+      // const currentState = cache.readQuery({ query });
+      // console.log('openModal', currentState)
       return data;
     },
     closeModal: (_obj, args, {cache}) => {
@@ -50,9 +56,9 @@ export const resolvers = {
         countryId: null,
       }
       cache.writeData({ data });
-      const query = QUERY_CLIENT_MODAL;
-      const currentState = cache.readQuery({ query });
-      console.log('closeModal', currentState)
+      // const query = QUERY_CLIENT_MODAL;
+      // const currentState = cache.readQuery({ query });
+      // console.log('closeModal', currentState)
       return data;
     },
     toggleBorders: (_obj, args, {cache}) => {
@@ -63,9 +69,7 @@ export const resolvers = {
         viewBorders: !currentState.viewBorders
       }
       cache.writeData({data});
-      const query2 = QUERY_VIEWBORDERS_HEADER;
-      const newState = cache.readQuery({ query });
-      console.log('newCheck', newState);
+      return data;
     },
     scratchingComplete: (_obj, args, {cache}) => {
       const data = {
@@ -86,6 +90,7 @@ export const resolvers = {
         friendId: id
       }
       cache.writeData({ data });
+      return data;
     }
   }
 }

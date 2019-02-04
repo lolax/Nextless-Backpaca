@@ -16,7 +16,6 @@ import '../landing.scss';
 //-- React Implementation ------------------------
 export default class Login extends Component {
   render() {
-    console.log(this.props);
     return (
       <div className='login_loginButton'>
           <Button color="twitter" className='login' onClick={() => this.props.login()}>

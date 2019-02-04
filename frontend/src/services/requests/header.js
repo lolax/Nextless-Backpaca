@@ -19,8 +19,8 @@ export const QUERY_VIEWBORDERS_HEADER = gql`
 
 // client mutations
 export const MUTATION_VIEWFRIEND_HEADER = gql`
-  mutation($id: ID!) {
-    viewFriend(id: $id) @client
+  mutation($id: ID!, $me: String) {
+    viewFriend(id: $id, me: $me) @client
   }
 `
 export const MUTATION_OPENMODAL_HEADER = gql`

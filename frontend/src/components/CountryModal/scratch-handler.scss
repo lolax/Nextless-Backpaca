@@ -91,7 +91,7 @@ input[type=range] {
   &::-webkit-slider-runnable-track {
     @include track();
   }
-  
+
   &::-webkit-slider-thumb {
     @include thumb();
     -webkit-appearance: none;
@@ -109,7 +109,7 @@ input[type=range] {
   }
 
   &::-ms-track {
-    @include track(); 
+    @include track();
     background: transparent;
     border-color: transparent;
     border-width: $thumb-width 0;

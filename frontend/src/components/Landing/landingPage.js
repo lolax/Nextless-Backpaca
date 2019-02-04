@@ -26,9 +26,8 @@ export default class LandingPage extends Component {
   componentDidMount() {
     this.getToken();
   }
-  
+
   render() {
-    console.log('landing page', this.props);
     return(
       <div className='landing_mainDiv'>
         <div className='landing_header'>

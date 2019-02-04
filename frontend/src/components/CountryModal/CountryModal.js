@@ -22,9 +22,14 @@ import ClearVisitButton from './ClearVisitButton';
 //-- React Implementation ------------------------
 export default class CountryModal extends Component {
   render() {
+    console.log('Country Modal props', this.props)
     return (
       <Query query={QUERY_CLIENT_MODAL}>
       {({ loading, data }) => {
+        if (loading) {
+          return null;
+        }
+        console.log(data); 
         let displayId, disabled
         if (data.viewingFriend) {
           displayId = data.friendId

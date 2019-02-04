@@ -25,6 +25,7 @@ export default class FriendsVisits extends Component {
         if (error) {
           return (<div>error</div>);
         }
+        console.log(friends);
         let friendsList;
         if (friends) {
           let friendArray = [];
@@ -60,7 +61,7 @@ export default class FriendsVisits extends Component {
             {friendsList && friendsList.map(person => {
               const icon = person[1];
               return (
-                <List.Item key={person[0]} icon={`${icon}`} content={person[0]}/>
+                <List.Item key={person[0]} icon={icon} content={person[0]}/>
               );
             })}
           </List>
