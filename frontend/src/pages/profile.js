@@ -49,14 +49,14 @@ export default class Profile extends Component {
                         return <div>Loading</div>
                       }
                       return (
-                        <Header userId={me.id} users={users} logout={this.props.logout} />
+                        <Header userId={me.id} users={users} logout={this.props.logout} {...this.props}/>
                       );
                     }}
                     </Query>
                   {/* #endregion Header component end */}
-                  <UserCard user={me}/>
+                  <UserCard user={me} {...this.props}/>
                   {/* #region FriendsList component */}
-                    <FriendsList userId={me.id} friends={me.friends} />
+                  <FriendsList userId={me.id} friends={me.friends} />
                   {/* #endregion FriendsList component */}
                   </>
                 );
