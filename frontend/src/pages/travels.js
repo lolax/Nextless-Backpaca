@@ -8,8 +8,7 @@
 //-- Dependencies --------------------------------
 // import dynamic from 'next/dynamic';
 import StaticMap from '../components/Map/StaticMap';
-import { Dimmer, Loader } from 'semantic-ui-react';
-import { Query, Mutation, ApolloConsumer } from 'react-apollo';
+import { Query } from 'react-apollo';
 import React, { Component, Fragment } from 'react';
 import MapHeader from '../components/MapHeader/MapHeader';
 import Legend from '../components/MapLegend/Legend';
@@ -20,8 +19,6 @@ import '../components/Map/map.scss';
 import {
   QUERY_ME_TRAVELS,
   QUERY_CLIENT_TRAVELS,
-  QUERY_USERVISITS_TRAVELS,
-  QUERY_FRIENDSVISITS_TRAVELS,
   QUERY_MODAL_TRAVELS } from '../services/requests/travels';
 
 //-- Subcomponent: Dynamic Map -------------------

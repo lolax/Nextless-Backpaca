@@ -9,9 +9,6 @@
 import React, { Component, Fragment } from 'react'
 import { Query } from 'react-apollo'
 import {
-  QUERY_CLIENT_PROFILE,
-  QUERY_USER_PROFILE,
-  QUERY_FRIENDS_PROFILE,
   QUERY_USERS_PROFILE,
   QUERY_ME_PROFILE
 } from '../services/requests/profile'
