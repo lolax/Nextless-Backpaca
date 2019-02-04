@@ -7,7 +7,7 @@
   This component is named the same as a component on which it depends, leading
   to possible confusion. Ideally, this should be resolved by providing more
   descriptive names for each component.
-  
+
   Query country code from countryId props
 
   props to receive:
@@ -15,7 +15,7 @@
     countryId(string) - country that was clicked, needed for visit queries
     userId(string) - user (not necessarily the loggedin user) whose map & country data is being viewed
 
-  props to give:  
+  props to give:
     scratchable(boolean) - What kind of map to display. Options are:
       True - Display a scratchable map with flag overlay
       False - Display a simple colored map.
@@ -34,8 +34,8 @@
 import React, { Component } from 'react'
 import { Query, Mutation } from 'react-apollo'
 import ScratchCanvas from '../Scratcher/index.js'
-import { 
-  QUERY_COUNTRYID_SCRATCHER, 
+import {
+  QUERY_COUNTRYID_SCRATCHER,
   QUERY_USER_SCRATCHER,
   MUTATION_COMPLETE_SCRATCHER } from '../../services/requests/scratcher'
 
@@ -46,13 +46,13 @@ export default class Scratcher extends Component {
     let scratchable = !disabled;
     return (
       <div style={{height: '200px'}}>
-        <Query 
+        <Query
           query={QUERY_COUNTRYID_SCRATCHER}
           variables={{ id: countryId }}>
           {({ loading: loadingCountryCode, data: {countryById} }) => {
             return (
-              <Query 
-                query={QUERY_USER_SCRATCHER} 
+              <Query
+                query={QUERY_USER_SCRATCHER}
                 variables={{ id: displayId }}>
               {({ loading: loadingUserSetting, data: {user} }) => {
                 if (loadingCountryCode || loadingUserSetting) {
@@ -64,15 +64,15 @@ export default class Scratcher extends Component {
                 return (
                   <Mutation mutation={MUTATION_COMPLETE_SCRATCHER}>
                     {(scratchingComplete) => (
-                      <ScratchCanvas 
+                      <ScratchCanvas
                       scratchable={scratchable}
-                      destination={countryById.code} 
-                      colorOutline={'lightsteelblue'} 
-                      colorScratch={'lightsteelblue'} 
+                      destination={countryById.code}
+                      colorOutline={'lightsteelblue'}
+                      colorScratch={'lightsteelblue'}
                       handleScratchAll={() => {
                         scratchingComplete();
                       }}
-                      handleLoadingError={() => console.log('cannot load image')} 
+                      handleLoadingError={(error) => console.log('cannot load image', error)} 
                       style={{ height: '200px' }} />
                     )}
                   </Mutation>

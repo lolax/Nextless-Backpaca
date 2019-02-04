@@ -9,7 +9,8 @@
 import React from 'react';
 import { List, Image, Button, Icon } from 'semantic-ui-react';
 import { Mutation } from 'react-apollo';
-import { 
+import {
+  QUERY_ME_FRIENDS_PROFILE,
   QUERY_FRIENDS_PROFILE,
   MUTATION_DELETEFRIEND_PROFILE,
   MUTATION_FRIEND_PROFILE } from '../../services/requests/profile';
@@ -23,7 +24,8 @@ import {
   //userId - the current user that is logged in
 const FriendsList = ({ friends, userId }) => (
   <List className='profile_friendsListMain'>
-
+  <List.Header>Your Friends</List.Header>
+  {!friends && <List.Item><List.Content>You don't have any friends yet! Explore the app to find some!</List.Content></List.Item>}
   {/* Takes friends from props and maps over each friend creating a seperate list item */}
   {friends.map(friend => {
     return (
@@ -31,7 +33,7 @@ const FriendsList = ({ friends, userId }) => (
         <List.Content className='profile_friendsListContent'>
           <Mutation mutation={MUTATION_FRIEND_PROFILE} variables={{id: friend.id}}>
             {setFriendId => (
-              <Link 
+              <Link
                 to={`/friends/${friend.id}`}
                 onClick={setFriendId}
               >

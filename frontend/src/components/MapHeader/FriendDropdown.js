@@ -26,7 +26,6 @@ export default class FriendDropdown extends Component {
             if (loadingFriends) {
               return (<div>Working on it</div>)
             }
-            console.log(me); 
             //takes the array of friends retrieved and maps through it to set the value of the dropdown options
             let friendsList = [];
             if (me.friends) {
@@ -47,7 +46,7 @@ export default class FriendDropdown extends Component {
                 <Dropdown
                   placeholder="My Travels"
                   onChange={(e, data) => {
-                    viewFriend({ variables: { id: data.value }});
+                    viewFriend({ variables: { id: data.value, me: me.id }});
                   }}
                   button
                   selectOnBlur={false}

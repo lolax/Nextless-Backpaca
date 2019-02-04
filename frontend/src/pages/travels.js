@@ -43,6 +43,9 @@ export default class Travels extends Component {
         <Query query={QUERY_CLIENT_TRAVELS}>
         {({ loading: loadinglocal, data }) => {
           const localState = data;
+          if (loadinglocal) {
+            return <div>loading</div>
+          }
           if (!localState) {
             return null;
           }
@@ -50,12 +53,12 @@ export default class Travels extends Component {
             <Fragment>
               <Query query={QUERY_ME_TRAVELS} >
               {({ loading: loadingVisits, data: { me }} ) => {
-                if (loadinglocal || loadingVisits) {
+                if (loadingVisits) {
                   return <div>loading...</div>
                 }
-                console.log(me);
+                console.log('me in tra',me);
                 let visitsUser = [];
-                if (me.visits.length > 0) {
+                if (me.visits && me.visits.length > 0) {
                   visitsUser.push(me.visits);
                 }
                 visitsUser = (fixData(visitsUser))
@@ -76,27 +79,29 @@ export default class Travels extends Component {
                   borders = visitsUser;
                 }
                 return (
+                  <>
                   <StaticMap colors={colors} borders={borders} viewBorders={viewBorders} />
+                  <Query query={QUERY_MODAL_TRAVELS}>
+                  {({ loading, data }) => {
+                    if (loading) return <div>Loading</div>
+                    if (!data.modalOpen) {
+                      return (
+                        null
+                      )
+                    }
+                    if (data.modalOpen) {
+                      return (
+                        <CountryModal {...this.props} userId={me.id}/>
+                      );
+                    }
+                  }}
+                  </Query>
+                  </>
                 );
               }}
               </Query>
             </Fragment>
           )
-        }}
-        </Query>
-        <Query query={QUERY_MODAL_TRAVELS}>
-        {({ loading, data }) => {
-          if (loading) return <div>Loading</div>
-          if (!data.modalOpen) {
-            return (
-              null
-            )
-          }
-          if (data.modalOpen) {
-            return (
-              <CountryModal {...this.props}/>
-            );
-          }
         }}
         </Query>
         <div className='travels_checkboxMobile'>

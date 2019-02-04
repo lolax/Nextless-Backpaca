@@ -40,6 +40,7 @@ export default class Profile extends Component {
                 if (error) {
                   return <div>Whoops!</div>
                 }
+                console.log('in profile', me)
                 return (
                   <>
                   {/* #region Header component */}

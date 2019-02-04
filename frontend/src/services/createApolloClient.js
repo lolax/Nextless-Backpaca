@@ -10,6 +10,7 @@ import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { ApolloLink } from 'apollo-link';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { persistCache } from 'apollo-cache-persist';
 import { onError } from 'apollo-link-error';
 import { withClientState } from 'apollo-link-state';
 import { setContext } from 'apollo-link-context';
@@ -19,7 +20,7 @@ import { resolvers } from './resolvers'
 //-- Project Constants ---------------------------
 //default values to be initialized to the local cache.
 const defaults = {
-  userId: 'cjqt5c95y00s40894zs7m6q4v',
+  // userId: 'cjqt5c95y00s40894zs7m6q4v',
   friendId: null,
   countryId: null,
   viewingFriend: false,
@@ -31,7 +32,13 @@ const defaults = {
 //new local cache, passing in dataIdFromObject, which takes a data object and returns a unique identifier to be used when normalizing the data in ths store.
 const cache = new InMemoryCache({
   dataIdFromObject: o => o.id
-})
+});
+
+//persist the cache in local storage
+// persistCache({
+//   cache,
+//   storage: window.localStorage,
+// });
 
 //sets authorization header to the token stored in local storage after login with Auth0
 const authLink = setContext((_, { headers }) => {
