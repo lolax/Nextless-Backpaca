@@ -39,7 +39,7 @@ export default class Travels extends Component {
   render() {
     return (
       <div className='travels_map-container'>
-        <MapHeader logout={this.props.logout}/>
+        <MapHeader logout={this.props.logout} {...this.props} />
         <Query query={QUERY_CLIENT_TRAVELS}>
         {({ loading: loadinglocal, data }) => {
           const localState = data;
@@ -94,7 +94,7 @@ export default class Travels extends Component {
           }
           if (data.modalOpen) {
             return (
-              <CountryModal />
+              <CountryModal {...this.props}/>
             );
           }
         }}
