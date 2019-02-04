@@ -20,16 +20,16 @@ const RESOLUTION_DEFAULT = 25;
     that this will result in a garbled display. The underlying problem should be
     addressed instead, which is that React is invoking ComponentDidMount before
     client rectangles have been assigned. */
-const URI_COUNTRY_ALPHA = '../../static/country-alpha';
+const URI_COUNTRY_ALPHA = '/static/country-alpha';
 /* URI_COUNTRY_ALPHA: The uri from which alpha masks can be loaded. This is
     probably a subdirectory under a "static" or "public" directory. */
-const URI_COUNTRY_FLAG  = '../../static/country-flag';
+const URI_COUNTRY_FLAG  = '/static/country-flag';
 /* URI_COUNTRY_FLAG: The uri from which flags can be loaded. This is probably a
     subdirectory under a "static" or "public" directory. */
 const DESTINATION_DEFAULT = 'default';
 /* DESTINATION_DEFAULT: The name of the resource files (alpha mask and flag) to
     load if no other destination was specified, or if loading fails. The flag
-    url to be loaded, for example, will resemble: ../../static/default.svg */
+    url to be loaded, for example, will resemble: /static/flags/default.svg */
 export const COMPLETION_CHECK_RATE = 1000/4;
 /* Completion Check Rate: The number of miliseconds between checks to see if
     the user has completed scratching the entire map. (only takes place during
@@ -99,8 +99,8 @@ export async function configureCountry(drawingState, destination) {
     if(!destination || destination === -99 || destination === '-99') {
         destination = DESTINATION_DEFAULT;
     }
-    let uriMap  = require(`${URI_COUNTRY_ALPHA}/${destination}.svg`);
-    let uriFlag = require(`${URI_COUNTRY_FLAG }/${destination}.svg`);
+    let uriMap  = `${URI_COUNTRY_ALPHA}/${destination}.svg`;
+    let uriFlag = `${URI_COUNTRY_FLAG }/${destination}.svg`;
     // Create images of the map (alpha mask) and flag, to be used in draw
     let imageMap  = new Image();
     let imageFlag = new Image();
@@ -124,8 +124,8 @@ export async function configureCountry(drawingState, destination) {
     }
     // Try to load default images, if necessary
     catch(error) {
-        uriMap  = require(`${URI_COUNTRY_ALPHA}/${DESTINATION_DEFAULT}.svg`);
-        uriFlag = require(`${URI_COUNTRY_FLAG}/${DESTINATION_DEFAULT}.svg`);
+        uriMap  = `${URI_COUNTRY_ALPHA}/${DESTINATION_DEFAULT}.svg`;
+        uriFlag = `${URI_COUNTRY_FLAG}/${DESTINATION_DEFAULT}.svg`;
         imageMap  = new Image();
         imageFlag = new Image();
         await Promise.all([
