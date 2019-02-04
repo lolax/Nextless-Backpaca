@@ -11,7 +11,7 @@ const jwks = jwksClient({
   cache: true,
   rateLimit: true,
   jwksRequestsPerMinute: 1,
-  jwksUri: `${process.env.REACT_APP_AUTH0_ISSUER}/.well-known/jwks.json`
+  jwksUri: `https://backpaca.auth0.com/.well-known/jwks.json`
 })
 
 //-- validateAndParseIdToken --------------------------------
