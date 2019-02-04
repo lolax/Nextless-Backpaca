@@ -27,8 +27,8 @@ const Friends = (props) => (
             }
             return (
               <div>
-                <Header userId={userId} users={users} logout={props.logout}/>
-                <FriendCard currentUserId={userId} friendsData={friends.friends} />
+                <Header userId={userId} users={users} logout={props.logout} {...props} />
+                <FriendCard currentUserId={userId} friendsData={friends.friends} {...props} />
               </div>
             );
           }}
