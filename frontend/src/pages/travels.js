@@ -76,24 +76,24 @@ export default class Travels extends Component {
                   borders = visitsUser;
                 }
                 return (
-                  <>
-                  <StaticMap colors={colors} borders={borders} viewBorders={viewBorders} />
-                  <Query query={QUERY_MODAL_TRAVELS}>
-                  {({ loading, data }) => {
-                    if (loading) return <div>Loading</div>
-                    if (!data.modalOpen) {
-                      return (
-                        null
-                      )
-                    }
-                    if (data.modalOpen) {
-                      return (
-                        <CountryModal {...this.props} userId={me.id}/>
-                      );
-                    }
-                  }}
-                  </Query>
-                  </>
+                  <Fragment>
+                    <StaticMap colors={colors} borders={borders} viewBorders={viewBorders} />
+                    <Query query={QUERY_MODAL_TRAVELS}>
+                    {({ loading, data }) => {
+                      if (loading) return <div>Loading</div>
+                      if (!data.modalOpen) {
+                        return (
+                          null
+                        )
+                      }
+                      if (data.modalOpen) {
+                        return (
+                          <CountryModal {...this.props} userId={me.id}/>
+                        );
+                      }
+                    }}
+                    </Query>
+                  </Fragment>
                 );
               }}
               </Query>

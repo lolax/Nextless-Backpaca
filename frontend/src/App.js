@@ -6,7 +6,7 @@
 */
 
 //-- Dependencies --------------------------------
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import client from './services/createApolloClient.js';
 import Auth from './services/auth/auth';
 import { Route } from 'react-router-dom';
@@ -34,7 +34,7 @@ const handleAuthentication = (nextState, replace) => {
 class App extends Component {
   render() {
     return (
-      <>
+      <Fragment>
         <Route exact path='/' render={(props) => <Landing {...props}  login={auth.login} />} />
         <Route path='/friends/:id' render={(props) => <Friends {...props} logout={auth.logout}/>} />
         <Route path='/profile' render={(props) => <Profile {...props} logout={auth.logout}/>} />
@@ -43,7 +43,7 @@ class App extends Component {
           handleAuthentication(props)
           return <Callback{...props} />
         }} />
-      </>
+      </Fragment>
     );
   }
 }
