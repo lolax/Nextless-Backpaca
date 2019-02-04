@@ -7,7 +7,6 @@
 
 //-- Dependencies --------------------------------
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Dropdown } from 'semantic-ui-react';
 import './nav.scss'
 
@@ -20,12 +19,19 @@ export default class NavigationDropdown extends Component {
     return (
       <Dropdown floating text="pages" className= 'Nav_dropDown'>
         <Dropdown.Menu className='Nav_menu'>
-          <Link to="/travels">
-            <Dropdown.Item text="Travels" icon="plane" className='Nav_item'/>
-          </Link>
-          <Link to="/profile">
-            <Dropdown.Item text="Profile" icon="user" href="/profile" className='Nav_item' />
-          </Link>
+            <Dropdown.Item 
+              text="Travels" 
+              icon="plane" 
+              className='Nav_item' 
+              onClick={() => this.props.history.push('/travels')}
+            />
+            <Dropdown.Item 
+              text="Profile" 
+              icon="user" 
+              href="/profile" 
+              className='Nav_item' 
+              onClick={() => this.props.history.push('/profile')}
+            />
           <Dropdown.Item text="Logout" icon="sign out" onClick={() => this.props.logout()} className='Nav_item' />
         </Dropdown.Menu>
       </Dropdown>
