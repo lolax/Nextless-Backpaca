@@ -7,7 +7,6 @@
 //-- Dependencies --------------------------------
 import React, { Component, Fragment } from 'react'
 import { Card, Image, Checkbox, Form, Input, Button, Icon } from 'semantic-ui-react'
-import { Link } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import { 
   MUTATION_UPDATEUSER_PROFILE,
@@ -198,9 +197,10 @@ export default class UserCard extends Component {
                 <div>{scratchingAutomated ? 'automated scratchoff' : 'manual scratchoff'}</div>
                 <div>{isPrivate ? 'private user' : 'public user'}</div>
               </div>
-              <Link to='/travels'>
-                <Button inverted color='green'>Go to your travels</Button>
-              </Link>
+              <Button 
+                inverted color='green'
+                onClick={() => this.props.history.push('/travels')}
+              >Go to your travels</Button>
             </Fragment>
           )}
         </Card.Content>
