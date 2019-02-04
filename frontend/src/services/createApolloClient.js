@@ -10,12 +10,12 @@ import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { ApolloLink } from 'apollo-link';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { persistCache } from 'apollo-cache-persist';
+// import { persistCache } from 'apollo-cache-persist';
 import { onError } from 'apollo-link-error';
 import { withClientState } from 'apollo-link-state';
 import { setContext } from 'apollo-link-context';
 import { resolvers } from './resolvers'
-// import { devURL, prodURL } from './config.js'
+import { devURL, prodURL } from './config.js'
 
 //-- Project Constants ---------------------------
 //default values to be initialized to the local cache.
@@ -53,7 +53,7 @@ const authLink = setContext((_, { headers }) => {
 
 //sets the configuration options for interacting with our backend yoga server
 const httpLink = new HttpLink({
-  uri: 'http://localhost:4000',
+  uri: process.env.NODE_ENV === 'development' ? devURL : prodURL,
   credentials: 'include'
 });
 
